@@ -13,16 +13,13 @@ const sendqusetion = (req, res) => {
         ]
     }).then((qst) => {
         if (qst.length > 0) {
-            console.log(qst);
+            qst = qst.filter(item => item.commence !== false);
             resultdb.findOne({studentname:req.body.studentname}).then((rtfound)=>{
                 if(rtfound){
-                    qst = qst.filter((item) => !item.commence || item.subject === rtfound.subject);
-                    console.log(qst);
-                    // qst.map((item, i)=>{
-                    //     console.log(rtfound.subject, item.subject, "matched");
-                    // })
-                    res.send({ question: qst, status:true });
+                    qst = qst.filter((item) =>  item.subject !== rtfound.subject);
                 }
+                console.log(qst);
+                res.send({ question: qst, status:true });
             }).catch((err)=>{
                 console.log(err);
             })
