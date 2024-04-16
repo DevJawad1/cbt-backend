@@ -13,6 +13,7 @@ let qusetionsch = mongoo.Schema({
 const questionSchema= mongoo.Schema({
     subject: String,
     tutor: String,
+    tutoremail: String,
     type: String,
     spaces:Number,
     grade: String,
@@ -21,6 +22,4 @@ const questionSchema= mongoo.Schema({
 })
 
 let allquestion = mongoo.model('allQuestion', questionSchema)
-// let allUser = mongoo.model('alltutor', tutorsignup)
-
 module.exports = allquestion
